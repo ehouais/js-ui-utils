@@ -235,5 +235,19 @@ define([], function() {
         selectAll: function(selector, scope) {
             return Array.prototype.slice.call(scope instanceof Element ? scope.querySelectorAll(':scope '+selector) : document.querySelectorll(selector));
         },
+
+        // Generate a fragment (hence avoiding page reflow) with provided HTML
+        fragmentFromHtml: function(html) {
+            var frag = document.createDocumentFragment(),
+                tmp = document.createElement('body'),
+                child;
+
+            tmp.innerHTML = html;
+            while (child = tmp.firstElementChild) {
+                frag.appendChild(child);
+            }
+
+            return frag;
+        },
     };
 });
