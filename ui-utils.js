@@ -5,8 +5,9 @@ define([], function() {
 
     return SPA = {
         // Return the map of extracted DOM nodes having specific attribute
-        extract: function(attrName) {
-            return Array.prototype.slice.call(document.querySelectorAll('['+attrName+']')).reduce(function(map, node) {
+        // context can be a node or a DocumentFragment
+        extract: function(attrName, context) {
+            return Array.prototype.slice.call((context || document).querySelectorAll('['+attrName+']')).reduce(function(map, node) {
                 map[node.getAttribute(attrName)] = node;
                 node.remove();
                 node.removeAttribute(attrName);
