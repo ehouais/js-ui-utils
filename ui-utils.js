@@ -15,39 +15,14 @@ define([], function() {
             }, {});
         },
 
-        template: (function() {
-            var templates;
-
-            return function(id, update) {
-                // Lazy initialization of template list
-                if (!templates) {
-                    templates = {};
-                    Array.prototype.slice.call(document.querySelectorAll('[template-id]')).forEach(function(node) {
-                        templates[node.getAttribute('template-id')] = node;
-                        //node.remove();
-                        //node.removeAttribute('template-id');
-                    });
-                }
-                return function() {
-                    if (templates[id]) {
-                        var dom = templates[id].cloneNode(true);
-                        update.apply(dom, arguments);
-                        return dom;
-                    }
-                };
-            };
-        })(),
-
-        template2: function(dom, impl, templates) {
+        template: function(dom, impl) {
             return function(data) {
                 if (data) {
                     var node = document.contains(dom) ? dom : dom.cloneNode(true);
 
-                    impl.call(node, data, templates);
+                    impl.call(node, data);
 
                     return node;
-                } else {
-                    SPA.loader(dom); // TODO: empty designated nodes
                 }
             };
         },
