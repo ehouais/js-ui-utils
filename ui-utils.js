@@ -130,7 +130,7 @@ define([], function() {
                     }
                     if (typeof value == 'string') {
                         dom.innerHTML = value;
-                    } else if (value instanceof Element) {
+                    } else if (value instanceof Node) {
                         // empty parent node
                         while (dom.firstChild) {
                             dom.removeChild(dom.firstChild);
