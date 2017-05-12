@@ -249,5 +249,14 @@ define([], function() {
 
             return frag;
         },
+
+        // Create a DOM node with attributes
+        element: function(name, attrs) {
+            var $dom = document.createElement(name);
+            for (var key in attrs || {}) {
+                $dom.setAttribute(key, attrs[key]);
+            }
+            return $dom;
+        },
     };
 });
