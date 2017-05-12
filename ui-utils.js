@@ -130,7 +130,7 @@ define([], function() {
                     }
                     if (typeof value == 'string') {
                         dom.innerHTML = value;
-                    } else if (value instanceof Element) {
+                    } else if (value instanceof Node) {
                         // empty parent node
                         while (dom.firstChild) {
                             dom.removeChild(dom.firstChild);
@@ -219,7 +219,7 @@ define([], function() {
         delegate: function(selector, cb) {
             return function(e) {
                 if (e.target && e.target.matches(selector)) {
-                    cb.call(e.target, e);
+                    return cb.call(e.target, e);
               	}
             }
         },
@@ -248,6 +248,30 @@ define([], function() {
             }
 
             return frag;
+        },
+
+        // Create a DOM node with attributes and CSS rules
+        element: function(name, attrs, style) {
+            var $dom = document.createElement(name);
+            for (var key in attrs || {}) {
+                $dom.setAttribute(key, attrs[key]);
+            }
+            if (style) SPA.styleNode($dom, style);
+            return $dom;
+        },
+
+        // Insert node at first position in container
+        prepend: function(container, node) {
+            container.insertBefore(node, container.firstChild);
+        },
+
+        // Transform a node list into a real array
+        toArray: function(nodeList) {
+            var array = [];
+            for (var i = 0; i < nodeList.length; i++) {
+                array[i] = nodeList[i];
+            }
+            return array;
         },
     };
 });
