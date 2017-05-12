@@ -258,5 +258,10 @@ define([], function() {
             }
             return $dom;
         },
+
+        // Insert node at first position in container
+        prepend: function(container, node) {
+            container.insertBefore(node, container.firstChild);
+        },
     };
 });
