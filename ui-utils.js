@@ -219,7 +219,7 @@ define([], function() {
         delegate: function(selector, cb) {
             return function(e) {
                 if (e.target && e.target.matches(selector)) {
-                    cb.call(e.target, e);
+                    return cb.call(e.target, e);
               	}
             }
         },
