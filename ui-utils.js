@@ -264,5 +264,14 @@ define([], function() {
         prepend: function(container, node) {
             container.insertBefore(node, container.firstChild);
         },
+
+        // Transform a node list into a real array
+        toArray: function(nodeList) {
+            var array = [];
+            for (var i = 0; i < nodeList.length; i++) {
+                array[i] = nodeList[i];
+            }
+            return array;
+        },
     };
 });
