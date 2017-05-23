@@ -1,8 +1,4 @@
 define([], function() {
-    var isDefined = function(value) {
-            return value !== void(0);
-        };
-
     return SPA = {
         // Return the map of extracted DOM nodes having specific attribute
         // context can be a node or a DocumentFragment
@@ -87,38 +83,6 @@ define([], function() {
             } else {
                 node.removeAttribute(name);
             }
-        },
-
-        // Create a function that updates a node with given value
-        // or display a loader if value is undefined
-        loader: function(dom) {
-            var overlay = document.createElement("div"),
-                handler = function(value) {
-                    if (isDefined(value)) {
-                        overlay.parentNode && dom.removeChild(overlay);
-                    } else {
-                        dom.style.position = 'relative';
-                        dom.appendChild(overlay);
-                    }
-                };
-
-            SPA.styleNode(overlay, {
-                position: 'absolute',
-                width: '100%',
-                height: '100%',
-                top: 0,
-                left: 0,
-                display: 'block',
-                textAlign: 'center',
-                backgroundImage: 'url(\'data:image/gif;base64,R0lGODlhEAAQAPIAAP////9mAP7awv6NQv9mAP6gYv6zgv69kiH+GkNyZWF0ZWQgd2l0aCBhamF4bG9hZC5pbmZvACH5BAAKAAAAIf8LTkVUU0NBUEUyLjADAQAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQACgABACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkEAAoAAgAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkEAAoAAwAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkEAAoABAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQACgAFACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQACgAGACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAAKAAcALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==\')',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'center',
-                backgroundColor: '#fff',
-            });
-
-            handler();
-
-            return handler;
         },
 
         // Create a function that can serve as a stream handler,
