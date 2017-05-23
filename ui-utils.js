@@ -215,10 +215,14 @@ define([], function() {
         },
 
         // Create a DOM node with attributes and CSS rules
-        element: function(name, attrs, style) {
+        element: function(name, props, style) {
             var $dom = document.createElement(name);
-            for (var key in attrs || {}) {
-                $dom.setAttribute(key, attrs[key]);
+            for (var key in props || {}) {
+                if (['textContent', 'value'].indexOf(key) != -1) {
+                    $dom[key] = props[key];
+                } else {
+                    $dom.setAttribute(key, props[key]);
+                }
             }
             if (style) SPA.styleNode($dom, style);
             return $dom;
