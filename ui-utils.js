@@ -237,5 +237,15 @@ define([], function() {
             }
             return array;
         },
+
+        // Fills a SELECT node with options corresponding to given object
+        options: function($dom, options) {
+            SPA.toNodes($dom, function(key) {
+                return SPA.element('option', {
+                    value: key,
+                    textContent: options[key]
+                });
+            })(Object.keys(options));
+        },
     };
 });
