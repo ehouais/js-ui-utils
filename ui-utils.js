@@ -167,8 +167,8 @@ define([], function() {
                 if (collection && collection.forEach) {
                     // iteratively add nodes to provisional fragment
                     var fragment = document.createDocumentFragment();
-                    collection.forEach(function(item) {
-                        fragment.appendChild(render(item));
+                    collection.forEach(function(item, index) {
+                        fragment.appendChild(render(item, index));
                     });
                     // transfer fragment to DOM
                     dom.appendChild(fragment);
