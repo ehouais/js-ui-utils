@@ -3,6 +3,7 @@ define(['ui-utils'], function($) {
         var data = {},
             $fields = $.element('div'),
             $buttons = $.element('div'),
+            $hiddens = $.element('div'),
             $submit,
             id;
 
@@ -17,6 +18,12 @@ define(['ui-utils'], function($) {
             $button.dataset.id = id;
             $button.textContent = params.buttons[id];
             $buttons.appendChild($button);
+        }
+
+        for (id in params.hidden) {
+            $hidden = $.element('input', {type: 'hidden', value: params.hidden[id]});
+            $hidden.dataset.id = id;
+            $hiddens.appendChild($hidden);
         }
 
         $submit = $.element('button');
