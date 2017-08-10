@@ -30,10 +30,13 @@ define(['ui-utils'], function($) {
         $submit.textContent = 'Submit';
         $buttons.appendChild($submit);
         $dom.addEventListener('click', $.delegate('button', function(e) {
-            cbs[this.dataset.id]($.selectAll('input', $dom).reduce(function(data, $node) {
-                data[$node.dataset.id] = $node.value;
-                return data;
-            }, {}));
+            var id = this.dataset.id,
+                data = $.selectAll('input', $dom).reduce(function(data, $node) {
+                    data[$node.dataset.id] = $node.value;
+                    return data;
+                }, {});
+
+            (cbs.hasOwnProperty(id) ? cbs[id] : cbs)(data);
         });
 
         $dom.appendChild($fields);
