@@ -37,7 +37,7 @@ define(['ui-utils'], function($) {
                 }, {});
 
             (cbs.hasOwnProperty(id) ? cbs[id] : cbs)(data);
-        });
+        }));
 
         $dom.appendChild($fields);
         $dom.appendChild($buttons);
