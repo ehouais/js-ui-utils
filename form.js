@@ -30,7 +30,7 @@ define(['ui-utils'], function($) {
         $submit.textContent = 'Submit';
         $buttons.appendChild($submit);
         $submit.addEventListener('click', function(e) {
-            cb($.selectAll('input', $fields).reduce(function(data, $node) {
+            cb($.selectAll('input', $dom).reduce(function(data, $node) {
                 data[$node.dataset.id] = $node.value;
                 return data;
             }, {}));
@@ -38,9 +38,10 @@ define(['ui-utils'], function($) {
 
         $dom.appendChild($fields);
         $dom.appendChild($buttons);
+        $dom.appendChild($hiddens);
 
         return function(data) {
-            $.selectAll('input', $fields).forEach(function($node) {
+            $.selectAll('input', $dom).forEach(function($node) {
                 var value = data[$node.dataset.id];
                 $node.value = typeof value == 'undefined' ? '' : value;
             });
