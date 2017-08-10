@@ -14,7 +14,7 @@ define(['ui-utils'], function($) {
 
         for (id in params.buttons) {
             $button = $.element('button');
-            $button.dataset.id = id.substr(1, id.length-2);
+            $button.dataset.id = id;
             $button.textContent = params.buttons[id];
             $buttons.appendChild($button);
         }
