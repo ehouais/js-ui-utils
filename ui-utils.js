@@ -14,7 +14,7 @@ define([], function() {
         template: function(dom, impl) {
             return function(data) {
                 if (data) {
-                    var node = document.contains(dom) ? dom : dom.cloneNode(true);
+                    var node = document.body.contains(dom) ? dom : dom.cloneNode(true);
 
                     impl.call(node, data);
 
