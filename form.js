@@ -1,5 +1,5 @@
 define(['ui-utils'], function($) {
-    return function($dom, params, cb) {
+    return function($dom, params, cbs) {
         var data = {},
             $fields = $.element('div'),
             $buttons = $.element('div'),
@@ -29,8 +29,8 @@ define(['ui-utils'], function($) {
         $submit = $.element('button');
         $submit.textContent = 'Submit';
         $buttons.appendChild($submit);
-        $submit.addEventListener('click', function(e) {
-            cb($.selectAll('input', $dom).reduce(function(data, $node) {
+        $dom.addEventListener('click', $.delegate('button', function(e) {
+            cbs[this.dataset.id]($.selectAll('input', $dom).reduce(function(data, $node) {
                 data[$node.dataset.id] = $node.value;
                 return data;
             }, {}));
