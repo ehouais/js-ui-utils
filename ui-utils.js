@@ -12,14 +12,12 @@ define([], function() {
         },
 
         template: function(dom, impl) {
-            return function(data) {
-                if (data) {
-                    var node = document.body.contains(dom) ? dom : dom.cloneNode(true);
+            return function() {
+                var node = document.contains(dom) ? dom : dom.cloneNode(true);
 
-                    impl.call(node, data);
+                impl.apply(node, arguments);
 
-                    return node;
-                }
+                return node;
             };
         },
 
